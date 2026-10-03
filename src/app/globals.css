@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/*
+ * healthly design tokens.
+ * Soft sage paper, forest-green accent, deep green-black ink, and a set of
+ * tinted tiles (green / red / amber / blue / violet) for record types.
+ * Clinical status uses amber (out of range) and green (in range), always
+ * paired with a text label, never colour alone.
+ */
+:root {
+  --bg: #f7f8f5;
+  --surface: #ffffff;
+  --surface-2: #fafbf9;
+  --sunken: #f1f4f0;
+  --sidebar: #f3f5f1;
+  --ink: #17231d;
+  --ink-2: #4b5a52;
+  --ink-3: #85908a;
+  --ink-4: #b7bfba;
+  --line: #e6eae5;
+  --line-2: #eef1ed;
+  --accent: #2f6b4f;
+  --accent-ink: #1f4f39;
+  --accent-soft: #e4eee7;
+  --high: #b5651d;
+  --high-soft: #fdf1e4;
+  --low: #7b55b0;
+  --low-soft: #f2edf9;
+  --ok: #2f7a52;
+  --ok-soft: #e6f3ec;
+  --danger: #c2413b;
+  --danger-soft: #fdeceb;
+  --on-ink: #ffffff;
+  --on-accent: #ffffff;
+  --t-green: #2f7a57;
+  --t-green-bg: #e7f2eb;
+  --t-red: #d0463c;
+  --t-red-bg: #fdeceb;
+  --t-amber: #d58716;
+  --t-amber-bg: #fff2e0;
+  --t-blue: #3f5fd6;
+  --t-blue-bg: #eaeffd;
+  --t-violet: #7b55b0;
+  --t-violet-bg: #f2edf9;
+  --sun: #fcd9b3;
+  --hill-1: #edf1ec;
+  --hill-2: #e1e9e3;
+  --hill-3: #d3dfd7;
+  --cat-consult: var(--t-blue);
+  --cat-diagnostic: var(--t-green);
+  --cat-medication: var(--t-red);
+  --cat-hospital: var(--t-violet);
+  --cat-procedure: var(--t-amber);
+}
+
+/* Dark theme: follows the OS unless the viewer picked a theme explicitly. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1311;
+    --surface: #151b18;
+    --surface-2: #19201c;
+    --sunken: #1e2622;
+    --sidebar: #111714;
+    --ink: #e7eee9;
+    --ink-2: #b2beb7;
+    --ink-3: #84918a;
+    --ink-4: #56625b;
+    --line: #26302b;
+    --line-2: #1f2824;
+    --accent: #6fbf94;
+    --accent-ink: #9bd8b5;
+    --accent-soft: #1a2e24;
+    --high: #f0a75e;
+    --high-soft: #31230f;
+    --low: #c3a6f0;
+    --low-soft: #2a2238;
+    --ok: #6fc79a;
+    --ok-soft: #14291f;
+    --danger: #f08a82;
+    --danger-soft: #35201f;
+    --on-ink: #0e1311;
+    --on-accent: #0e1311;
+    --t-green: #7fcaa0;
+    --t-green-bg: #1a2d23;
+    --t-red: #f08a82;
+    --t-red-bg: #34201f;
+    --t-amber: #f2b866;
+    --t-amber-bg: #33281a;
+    --t-blue: #93a8ff;
+    --t-blue-bg: #1d2540;
+    --t-violet: #c3a6f0;
+    --t-violet-bg: #2a2238;
+    --sun: #6b4a2c;
+    --hill-1: #141b17;
+    --hill-2: #18211c;
+    --hill-3: #1d2822;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1311;
+  --surface: #151b18;
+  --surface-2: #19201c;
+  --sunken: #1e2622;
+  --sidebar: #111714;
+  --ink: #e7eee9;
+  --ink-2: #b2beb7;
+  --ink-3: #84918a;
+  --ink-4: #56625b;
+  --line: #26302b;
+  --line-2: #1f2824;
+  --accent: #6fbf94;
+  --accent-ink: #9bd8b5;
+  --accent-soft: #1a2e24;
+  --high: #f0a75e;
+  --high-soft: #31230f;
+  --low: #c3a6f0;
+  --low-soft: #2a2238;
+  --ok: #6fc79a;
+  --ok-soft: #14291f;
+  --danger: #f08a82;
+  --danger-soft: #35201f;
+  --on-ink: #0e1311;
+  --on-accent: #0e1311;
+  --t-green: #7fcaa0;
+  --t-green-bg: #1a2d23;
+  --t-red: #f08a82;
+  --t-red-bg: #34201f;
+  --t-amber: #f2b866;
+  --t-amber-bg: #33281a;
+  --t-blue: #93a8ff;
+  --t-blue-bg: #1d2540;
+  --t-violet: #c3a6f0;
+  --t-violet-bg: #2a2238;
+  --sun: #6b4a2c;
+  --hill-1: #141b17;
+  --hill-2: #18211c;
+  --hill-3: #1d2822;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-high: var(--high);
+  --color-high-soft: var(--high-soft);
+  --color-low: var(--low);
+  --color-low-soft: var(--low-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-on-ink: var(--on-ink);
+  --color-on-accent: var(--on-accent);
+  --color-sidebar: var(--sidebar);
+  --color-t-green: var(--t-green);
+  --color-t-green-bg: var(--t-green-bg);
+  --color-t-red: var(--t-red);
+  --color-t-red-bg: var(--t-red-bg);
+  --color-t-amber: var(--t-amber);
+  --color-t-amber-bg: var(--t-amber-bg);
+  --color-t-blue: var(--t-blue);
+  --color-t-blue-bg: var(--t-blue-bg);
+  --color-t-violet: var(--t-violet);
+  --color-t-violet-bg: var(--t-violet-bg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif-display);
+  --shadow-card: 0 1px 2px rgb(23 35 29 / 0.03), 0 4px 16px -6px rgb(23 35 29 / 0.06);
+  --shadow-pop: 0 16px 40px -12px rgb(23 35 29 / 0.18), 0 2px 6px rgb(23 35 29 / 0.05);
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade-in: fade-in 0.3s ease both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* The display serif defaults to old-style figures; health numbers read better lining. */
+.font-serif {
+  font-variant-numeric: lining-nums;
+}
+
+/* Thin, quiet scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--ink-3) 0%, var(--ink) 40%, var(--ink-3) 80%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
